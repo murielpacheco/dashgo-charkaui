@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Button, Icon, Table, Thead, Tbody, Tr, Th, Checkbox, Td, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Button, Icon, Table, Thead, Tbody, Tr, Th, Checkbox, Td, Text, useBreakpointValue } from '@chakra-ui/react'
 import { RiAddLine, RiPencilLine } from 'react-icons/ri'
 
 import { Header } from '../../components/Header'
@@ -6,6 +6,11 @@ import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
 
 export default function Users() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  })
+
   return (
     <Box>
       <Header />
@@ -33,11 +38,11 @@ export default function Users() {
           <Table colorScheme="whiteAlpha">
             <Thead>
               <Tr>
-                <Th px="6" color="gray.300" width="8">
-                  <Checkbox colorScheme="pink"></Checkbox>
+                <Th px={["4", "4", "6"]} color="gray.300" width="8">
+                  <Checkbox colorScheme="pink" ml={["2", "2", "0"]}></Checkbox>
                 </Th>
                 <Th>Usuário</Th>
-                <Th>Data de cadastro</Th>
+                {isWideVersion && <Th>Data de cadastro</Th>}
                 <Th width="8"></Th>
               </Tr>
             </Thead>
@@ -52,24 +57,28 @@ export default function Users() {
                     <Text fontSize="sm" color="gray.300">murieldps@gmail.com</Text>
                   </Box>
                 </Td>
-                <Td>22 de Novembro 2021</Td>
-                <Td>
-                  <Button
-                    as="a"
-                    size="sm"
-                    fontSize="sm"
-                    colorScheme="purple"
-                    cursor="pointer"
-                    leftIcon={<Icon
-                      as={RiPencilLine}
-                      fontSize="16" />}>
-                    Editar
-                  </Button>
-                </Td>
+                {isWideVersion &&
+                  <>
+                    <Td>22 de Novembro 2021</Td>
+                    <Td>
+                      <Button
+                        as="a"
+                        size="sm"
+                        fontSize="sm"
+                        colorScheme="purple"
+                        cursor="pointer"
+                        leftIcon={<Icon
+                          as={RiPencilLine}
+                          fontSize="16" />}>
+                      </Button>
+                    </Td>
+                  </>
+                }
+
               </Tr>
             </Tbody>
           </Table>
-          
+
           <Pagination />
         </Box>
       </Flex>
