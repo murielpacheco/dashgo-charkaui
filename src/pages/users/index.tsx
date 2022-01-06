@@ -6,7 +6,7 @@ import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
 
 export default function Users() {
-  const isWideVersion = useBreakpointValue({
+  const isWideVersion = useBreakpointValue({ //hook do chakra para determinar responsividade
     base: false,
     lg: true,
   })

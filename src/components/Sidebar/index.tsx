@@ -4,9 +4,9 @@ import { useSidebarDrawer } from '../../contexts/SidebarDrawerContext'
 import { SidebarNav } from './SidebarNax'
 
 export function Sidebar() {
-  const { isOpen, onClose } = useSidebarDrawer()
+  const { isOpen, onClose } = useSidebarDrawer() // calling our hook and its methods
 
-  const isDrawerSidebar = useBreakpointValue({
+  const isDrawerSidebar = useBreakpointValue({ // chakra hook that sets responsive stuff
     base: true,
     lg: false,
   })

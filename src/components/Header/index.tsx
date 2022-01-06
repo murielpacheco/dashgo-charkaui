@@ -8,9 +8,9 @@ import { Profile } from './Profile'
 import { SearchBox } from './SearchBox'
 
 export function Header() {
-  const { onOpen } = useSidebarDrawer()
+  const { onOpen } = useSidebarDrawer() // calling our hook and its methods
 
-  const isWideVersion = useBreakpointValue({
+  const isWideVersion = useBreakpointValue({ // chakra hook that sets responsive stuff
     base: false,
     lg: true,
   })

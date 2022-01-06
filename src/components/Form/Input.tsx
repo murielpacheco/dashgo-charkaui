@@ -5,7 +5,7 @@ interface InputProps extends ChakraInputProps {
   label?: string;
 }
 
-export function Input({ name, label, ...rest }: InputProps) {
+export function Input({ name, label, ...rest }: InputProps) { // ...rest == every props left on ChakraInputProps that we extended
   return (
     <FormControl>
       {!!label && <FormLabel htmlFor={name}>{label}</FormLabel>}

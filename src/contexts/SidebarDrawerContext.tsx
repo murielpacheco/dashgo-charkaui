@@ -9,7 +9,7 @@ interface SidebarDrawerProviderProps {
 
 type SidebarDrawerContextData = UseDisclosureReturn
 
-const SidebarDrawerContext = createContext({} as SidebarDrawerContextData)
+const SidebarDrawerContext = createContext({} as SidebarDrawerContextData) // we always have to use a type to createContext(), and usually we'll do ({} as typenameContextData)
 
 export function SidebarDrawerProvider({ children }: SidebarDrawerProviderProps) {
   const disclosure = useDisclosure()

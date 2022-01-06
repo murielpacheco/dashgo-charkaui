@@ -7,7 +7,7 @@ interface PaginationItemProps {
 }
 
 export function PaginationItem({
-  isCurrent = false,
+  isCurrent = false, // setting a initial value
   number
 }: PaginationItemProps) {
   
