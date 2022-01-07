@@ -5,6 +5,8 @@ import { Header } from '../../components/Header'
 import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
 
+import Link from 'next/link'
+
 export default function Users() {
   const isWideVersion = useBreakpointValue({ //hook do chakra para determinar responsividade
     base: false,
@@ -22,18 +24,20 @@ export default function Users() {
             <Heading size="lg" fontWeight="normal">
               Usuários
             </Heading>
-            <Button
-              as="a"
-              size="sm"
-              fontSize="sm"
-              colorScheme="pink"
-              cursor="pointer"
-              leftIcon={<Icon
-                as={RiAddLine}
-                fontSize="20"
-              />}>
-              Criar novo usuário
-            </Button>
+            <Link href="/users/create" passHref>
+              <Button
+                as="a"
+                size="sm"
+                fontSize="sm"
+                colorScheme="pink"
+                cursor="pointer"
+                leftIcon={<Icon
+                  as={RiAddLine}
+                  fontSize="20"
+                />}>
+                Criar novo usuário
+              </Button>
+            </Link>
           </Flex>
           <Table colorScheme="whiteAlpha">
             <Thead>
