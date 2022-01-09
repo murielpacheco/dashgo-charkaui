@@ -12,5 +12,8 @@
     - Fácil manutenção
     - Jeito simples de lidar com responsividade 
 
+  - Typescript
+    - Superset do Javascript que nos permite definir os tipos de informações que lidamos durante o desenvolvimento, assim facilitando a manutenção do código e adição de linhas por outros programadores que não escreveram o código inicialmente.
+
   - React-Hook-Form and Yup
     - Tecnologias utilizadas para trabalhar com formulários e validação de dados. Com o react-hook-form você manipula os Uncontrolled Components de uma maneira simples e de grande eficiência. Já o yup, biblioteca para validação de dados, facilita muito o trabalho com validações de dados, com sua declaração e métodos bem intuitivos

@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Button, Icon, Table, Thead, Tbody, Tr, Th, Checkbox, Td, Text, useBreakpointValue } from '@chakra-ui/react'
+import { Box, Flex, Heading, Button, Icon, Table, Thead, Tbody, Tr, Th, Checkbox, Td, Text, useBreakpointValue, Spinner } from '@chakra-ui/react'
 import { RiAddLine, RiPencilLine } from 'react-icons/ri'
 
 import { Header } from '../../components/Header'
@@ -6,12 +6,22 @@ import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
 
 import Link from 'next/link'
+import { useQuery } from 'react-query'
 
 export default function Users() {
+  const { data, isLoading, error } = useQuery('users', async () => {
+    const response = await fetch('http://localhost:3000/api/users')
+    const data = await response.json()
+
+    return data
+  })
+
+
   const isWideVersion = useBreakpointValue({ //hook do chakra para determinar responsividade
     base: false,
     lg: true,
   })
+
 
   return (
     <Box>
@@ -39,51 +49,49 @@ export default function Users() {
               </Button>
             </Link>
           </Flex>
-          <Table colorScheme="whiteAlpha">
-            <Thead>
-              <Tr>
-                <Th px={["4", "4", "6"]} color="gray.300" width="8">
-                  <Checkbox colorScheme="pink" ml={["2", "2", "0"]}></Checkbox>
-                </Th>
-                <Th>Usuário</Th>
-                {isWideVersion && <Th>Data de cadastro</Th>}
-                <Th width="8"></Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              <Tr>
-                <Td p="6">
-                  <Checkbox colorScheme="pink"></Checkbox>
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold">Muriel Pacheco</Text>
-                    <Text fontSize="sm" color="gray.300">murieldps@gmail.com</Text>
-                  </Box>
-                </Td>
-                {isWideVersion &&
-                  <>
-                    <Td>22 de Novembro 2021</Td>
-                    <Td>
-                      <Button
-                        as="a"
-                        size="sm"
-                        fontSize="sm"
-                        colorScheme="purple"
-                        cursor="pointer"
-                        leftIcon={<Icon
-                          as={RiPencilLine}
-                          fontSize="16" />}>
-                      </Button>
+
+          {isLoading ? (
+            <Flex justify="center">
+              <Spinner></Spinner>
+            </Flex>
+          ) : error ? (
+            <Text>Falha na obtenção de dados dos usuários.</Text>
+          ) : (
+            <>
+              <Table colorScheme="whiteAlpha">
+                <Thead>
+                  <Tr>
+                    <Th px={["4", "4", "6"]} color="gray.300" width="8">
+                      <Checkbox colorScheme="pink" ml={["2", "2", "0"]}></Checkbox>
+                    </Th>
+                    <Th>Usuário</Th>
+                    {isWideVersion && <Th>Data de cadastro</Th>}
+                    <Th width="8"></Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+
+                </Tbody>
+              </Table>
+              {data.users.map(user  => {
+                return (
+                  <Tr key={user.id}>
+                    <Td p="6">
+                      <Checkbox colorScheme="pink"></Checkbox>
                     </Td>
-                  </>
-                }
-
-              </Tr>
-            </Tbody>
-          </Table>
-
-          <Pagination />
+                    <Td>
+                      <Box>
+                        <Text fontWeight="bold">{user.name}</Text>
+                        <Text fontSize="sm" color="gray.300">{user.email}</Text>
+                      </Box>
+                    </Td>
+                    {isWideVersion && <Td>{user.createdAt}</Td>}
+                  </Tr>
+                )
+              })}
+              <Pagination />
+            </>
+          )}
         </Box>
       </Flex>
     </Box>
