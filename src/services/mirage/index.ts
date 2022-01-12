@@ -5,7 +5,7 @@ import faker from 'faker'
 type User = {
   name: string;
   email: string;
-  created_at: string;
+  createdAt: string;
 }
 
 export function makeServer() {
@@ -23,7 +23,7 @@ export function makeServer() {
           return faker.internet.email().toLowerCase()
         },
         createAt() {
-          return faker.date.recent(10, new Date())
+          return faker.date.recent(10)
         },
       })
     },
