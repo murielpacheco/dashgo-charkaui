@@ -22,7 +22,7 @@ export function Sidebar() {
           <DrawerContent bg="gray.800" p="4">
             <DrawerCloseButton mt="6" />
             <DrawerHeader>Navegação</DrawerHeader>
-
+            
             <DrawerBody>
               <SidebarNav />
             </DrawerBody>

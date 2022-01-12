@@ -5,6 +5,8 @@ import { SidebarDrawerProvider } from '../contexts/SidebarDrawerContext'
 import { makeServer } from '../services/mirage'
 
 import { QueryClientProvider, QueryClient } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
+
 
 if (process.env.NODE_ENV === 'development') {
   makeServer()
@@ -14,7 +16,7 @@ if (process.env.NODE_ENV === 'development') {
 const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const styles = useMultiStyleConfig('App',0)
+  const styles = useMultiStyleConfig('App', 0)
   return (
     <StylesProvider value={styles} >
       <QueryClientProvider client={queryClient}>
@@ -23,6 +25,8 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </SidebarDrawerProvider>
         </ChakraProvider>
+        <ReactQueryDevtools />
+
       </QueryClientProvider>
     </StylesProvider >
   )
